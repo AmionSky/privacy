@@ -1,4 +1,4 @@
-## Privacy Policy
+## Arise File Syncer - Privacy Policy
 
 Csányi István built the Arise File Syncer app as a Free app. This SERVICE is provided by Csányi István at no cost and is intended for use as is.
 
