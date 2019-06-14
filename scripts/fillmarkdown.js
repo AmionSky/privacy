@@ -1,1 +1,19 @@
-function fillMarkdown(e){var n,t,a;if(n=document.getElementById(e),t=getParameterByName("md"),n){if(t)return(a=new XMLHttpRequest).onreadystatechange=function(){4==this.readyState&&(200==this.status?n.innerHTML=marked(this.responseText):404==this.status&&(n.innerHTML="404 - Page not found."))},a.open("GET",t,!0),void a.send();n.innerHTML="404 - Page not found."}}function getParameterByName(e,n){n||(n=window.location.href),e=e.replace(/[\[\]]/g,"\\$&");var t=new RegExp("[?&]"+e+"(=([^&#]*)|&|#|$)").exec(n);return t?t[2]?decodeURIComponent(t[2].replace(/\+/g," ")):"":null}
+async function fillMarkdown(e) {
+    let policy = await getPolicy(getParameterByName("policy"));
+    if (policy) {
+        let elem = document.getElementById(e)
+        elem.innerHTML = marked(policy);
+    }
+}
+
+async function getPolicy(policy) {
+    let policyPath = "policies/" + policy + ".md";
+    let text = (await (await fetch(policyPath)).text())
+    return text;
+}
+
+function getParameterByName(e, n) {
+    n || (n = window.location.href), e = e.replace(/[\[\]]/g, "\\$&");
+    var t = new RegExp("[?&]" + e + "(=([^&#]*)|&|#|$)").exec(n);
+    return t ? t[2] ? decodeURIComponent(t[2].replace(/\+/g, " ")) : "" : null
+}
